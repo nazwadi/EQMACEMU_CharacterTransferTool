@@ -153,8 +153,8 @@ class CharacterTransferTool():
         """
         with self.eqmacemu_engine.connect() as eqmac_conn:
 
-            for table in ['account', 'account_ip']:
-                sql = text(f"DELETE FROM {0} WHERE id = :new_account_id".format(table))
+            for table, column in zip(['account', 'account_ip'], ['id', 'accid']):
+                sql = text(f"DELETE FROM {table} WHERE {column} = :new_account_id")
                 sql = sql.bindparams(new_account_id=self.new_account_id)
                 eqmac_conn.execute(sql)
 
@@ -162,7 +162,7 @@ class CharacterTransferTool():
                           'character_faction_values', 'character_inventory', 'character_languages',
                           'character_spells', 'character_memmed_spells', 'character_skills']:
 
-                sql = text(f"DELETE FROM {0} WHERE id = :new_char_id".format(table))
+                sql = text(f"DELETE FROM {table} WHERE id = :new_char_id")
                 sql = sql.bindparams(new_char_id=self.new_char_id)
                 eqmac_conn.execute(sql)
 
@@ -179,16 +179,18 @@ class CharacterTransferTool():
 
         insert_sql = text("INSERT INTO account (`id`, `name`, `charname`, `sharedplat`, `password`,\
                           `status`, `lsaccount_id`, `gmspeed`, `revoked`, `karma`, `minilogin_ip`,\
-                          `hideme`, `rulesflag`, `time_creation`, `expansion`, `ban_reason`, \
-                          `suspend_reason`, `flymode`, `ignore_tells`) \
+                          `hideme`, `rulesflag`, `suspendeduntil`, `time_creation`, `expansion`,\
+                           `ban_reason`, `suspend_reason`, `flymode`, `ignore_tells`) \
                           VALUES (:id, :name, :charname, :sharedplat, :password, :status, \
                           :lsaccount_id, :gmspeed, :revoked, :karma, :minilogin_ip, :hideme,\
-                          :rulesflag, :time_creation, :expansion, :ban_reason, :suspend_reason,\
-                          :flymode, :ignore_tells)")
+                          :rulesflag, :suspendeduntil, :time_creation, :expansion, :ban_reason,\
+                          :suspend_reason,:flymode, :ignore_tells)")
 
         with self.eqmacemu_engine.connect() as eqmac_conn:
             for record in results:
                 char_id, name, charname, sharedplat, password, status, _, lsaccount_id, gmspeed, _, flymode, ignore_tells, revoked, karma, minilogin_ip, hideme, rulesflag, suspendeduntil, time_creation, ban_reason, suspend_reason, _, _, _ = record
+                if suspendeduntil is None:
+                    suspendeduntil = "0000-00-00 00:00:00"  # Prevents IntegrityError 1048, Column 'suspendeduntil' cannot be null'
                 insert_sql = insert_sql.bindparams(id=char_id,
                                                    name=name,
                                                    charname=charname,
