@@ -39,7 +39,20 @@ $ python migrate_sql.py -c Soandso
 ## Please Read
 Be aware that a TAKP-based server is from an era that had much less inventory and bank space than EQEMU servers using a RoF2 client.  Thus, there is a non-zero chance that not all inventory and bank items will have a slot to be copied to.
 
-My core purpose was just to copy the base character, skills, languages, inventory, and spells over.  That being said, the following tables are not copied by this script:
+My core purpose was just to copy the base character, skills, languages, inventory, and spells over.  That being said, this script will copy the following tables:
+* 'account'
+* 'account_ip'
+* 'character_bind'
+* 'character_currency'
+* 'character_data'
+* 'character_faction_values'
+* 'character_inventory'
+* 'character_languages'
+* 'character_spells'
+* 'character_memmed_spells'
+* 'character_skills'
+
+However, the following tables are NOT copied by this script:
 * account_flags
 * account_rewards
 * character_alternate_abilities
