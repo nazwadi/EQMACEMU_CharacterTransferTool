@@ -142,7 +142,7 @@ class CharacterTransferTool():
 
             for record in results:
                 self.new_char_id, self.new_account_id, self.ls_account_id = record
-                print(self.new_char_id, self.new_account_id, self.ls_account_id)
+                print("chard_id={0}, account_id={1}, ls_account_id={2}".format(self.new_char_id, self.new_account_id, self.ls_account_id))
 
     def clear_character_from_eqmacdb(self):
         """
@@ -318,7 +318,7 @@ class CharacterTransferTool():
                            endurance, intoxication, str, sta, cha, dex, `int`, agi, wis, \
                            zone_change_count, hunger_level, thirst_level, pvp_status, \
                            air_remaining, autosplit_enabled, mailkey, firstlogon, e_aa_effects, \
-                           e_percent_to_aa, e_expended_aa_spent, showhelm)\
+                           e_percent_to_aa, e_expended_aa_spent, boatname, showhelm)\
                            VALUES (:charid, :account_id, :forum_id, :name, :last_name, :title, \
                            :suffix, :zone_id, :y, :x, :z, :heading, :gender, :race, :charclass, \
                            :level, :deity, :birthday, :last_login, :time_played, :level2, :anon, \
@@ -328,7 +328,7 @@ class CharacterTransferTool():
                            :cha, :dex, :charint, :agi, :wis, :zone_change_count, :hunger_level,\
                            :thirst_level, :pvp_status, :air_remaining, :autosplit_enabled, :mailkey,\
                            :firstlogon, :e_aa_effects, :e_percent_to_aa, :e_expended_aa_spent, \
-                           :showhelm)")
+                           :boatname, :showhelm)")
 
         with self.eqmacemu_engine.connect() as eqmac_conn:
             for record in results:
@@ -390,6 +390,7 @@ class CharacterTransferTool():
                                                    e_aa_effects=e_aa_effects,
                                                    e_percent_to_aa=e_percent_to_aa,
                                                    e_expended_aa_spent=e_expended_aa_spent,
+                                                   boatname='',
                                                    showhelm=showhelm)
                 eqmac_conn.execute(insert_sql)
 
