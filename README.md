@@ -2,13 +2,25 @@
 Python-based Character Transfer Tool to Copy characters from a EQEMU DB to a EQMACEMU DB
 
 ## Quickstart
-To begin, create a database dump of your eqemu player tables.
+This setup assumes your eqemu database is in the same mysql server as your TAKP database. 
 
-Then copy the .env example file that keeps your database secrets.
+However, you only need thhe player tables for this to work.
+
+First copy the .env example file to a production copy that will keep your database secrets.
 ```bash
 $ cp .env.example .env
 ```
-Next update the .env file with your database details. Finally, use the script.
+Next update the .env file with your database details. 
+
+```ini
+HOST="localhost"
+USERNAME="eqmac"
+PASSWD="eqmacpassword"
+EQEMU_DATABASE="eqemu_players"
+EQMACEMU_DATABASE="eqmac"
+```
+
+Finally, use the script.
 ```
 $ python migrate_sql.py --help
 usage: migrate_sql.py [-h] [-c CHARACTER]
