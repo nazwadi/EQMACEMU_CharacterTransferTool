@@ -268,7 +268,7 @@ class CharacterTransferTool():
 
     def copy_character_currency(self):
         """
-        Copies PEQ character_currency table to the TAKP character_currency table
+        Copies PEQ character_currency table columns to the TAKP character_currency table
         """
         sql = text("SELECT * FROM character_currency WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -303,7 +303,7 @@ class CharacterTransferTool():
 
     def copy_character_data(self):
         """
-        Copies PEQ character_data table to the TAKP character_data table
+        Copies PEQ character_data table columns to the TAKP character_data table
         """
         sql = text("SELECT * FROM character_data WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -398,7 +398,7 @@ class CharacterTransferTool():
 
     def copy_character_faction_values(self):
         """
-        Copies PEQ faction_values table to the TAKP character_faction_values table
+        Copies PEQ faction_values table columns to the TAKP character_faction_values table
         """
         sql = text("SELECT * FROM faction_values WHERE char_id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -421,7 +421,7 @@ class CharacterTransferTool():
 
     def copy_character_inventory(self):
         """
-        Copies the character_inventory from PEQ db to TAKP
+        Copies the character_inventory columns from PEQ db to TAKP
 
         This is not straightforward because item ids and inventory slots are not equivalent
         """
@@ -446,7 +446,7 @@ class CharacterTransferTool():
 
     def copy_character_languages(self):
         """
-        Copies the PEQ character_languages table to the TAKP character_languages table
+        Copies the PEQ character_languages table columns to the TAKP character_languages table
         """
         sql = text("SELECT * FROM character_languages WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -466,7 +466,7 @@ class CharacterTransferTool():
 
     def copy_character_spells(self):
         """
-        Copies the character_spells table from PEQ to TAKP databases
+        Copies the character_spells table columns from PEQ to TAKP databases
         """
         sql = text("SELECT * FROM character_spells WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -486,7 +486,7 @@ class CharacterTransferTool():
 
     def copy_character_memmed_spells(self):
         """
-        Copies the character_memmed_spells table from PEQ to TAKP databases
+        Copies the character_memmed_spells table columns from PEQ to TAKP databases
         """
         sql = text("SELECT * FROM character_memmed_spells WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
@@ -506,7 +506,7 @@ class CharacterTransferTool():
 
     def copy_character_skills(self):
         """
-        Copies the character_skills table from PEQ to TAKP databases
+        Copies the character_skills table columns from PEQ to TAKP databases
         """
         sql = text("SELECT * FROM character_skills WHERE id = :new_char_id")
         sql = sql.bindparams(new_char_id=self.new_char_id)
