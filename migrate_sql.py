@@ -539,7 +539,7 @@ if __name__ == "__main__":
     ctt.copy_character_currency()
     ctt.copy_character_data()
     ctt.copy_character_faction_values()
-#    ctt.copy_character_inventory()
+    ctt.copy_character_inventory()
     ctt.copy_character_languages()
     ctt.copy_character_spells()
     ctt.copy_character_memmed_spells()
